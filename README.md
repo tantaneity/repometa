@@ -14,13 +14,15 @@ I spin up a repo roughly once a week and my hands keep doing the same dance: sam
 
 ## Install
 
-`uv` pulls straight from the repo into an isolated tool venv and drops the command on your PATH:
+```
+uv tool install repometa
+```
+
+`uv` drops `repometa` into an isolated tool venv and puts it on your PATH, so it runs from any repo folder. Want the latest straight from source instead? Point uv at the repo:
 
 ```
 uv tool install git+https://github.com/tantaneity/repometa
 ```
-
-A push to the repo is the "release". Nothing to build, no token to juggle.
 
 ## Auth
 
@@ -88,14 +90,3 @@ Topics ride their own endpoint, `PUT /repos/{owner}/{repo}/topics`. Description 
 uv sync
 uv run pytest
 ```
-
-## Publish to PyPI (optional)
-
-Tag a version and an Action publishes it through Trusted Publishing (OIDC, no long-lived token):
-
-```
-git tag v0.1.0
-git push --tags
-```
-
-Set up the pending publisher on PyPI first and add a `pypi` environment in the repo settings. The workflow lives in `.github/workflows/publish.yml`.
